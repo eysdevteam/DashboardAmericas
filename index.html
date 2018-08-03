@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+     <head>
+	  <title></title>
+          <meta charset="utf-8">
+         <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- Import CSS Style -->
+          <link rel="stylesheet" type="text/css" href="css/style.css">
+         <!-- Fonts -->
+         <link href="https://fonts.googleapis.com/css?family=Lato|Roboto" rel="stylesheet">
+		 <!-- D3 -->
+		 <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+         <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+         <!-- JQuery -->
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                
+     </head>
+     <body>
+         <!-- Este contenedor ocupa el 100% de la página -->
+         <div class="container-big">
+             <!-- Cada contenedor pequeño contiene una gráfica distinta -->
+             <div id="c1" class="container-small">
+                 <div class="submenu">
+                     <div class="drop">
+                         <!-- El primer dropdown dinámico -->
+                         <div class="dropdown">
+                             <button class="dropbtn">Cliente &#9660;</button>
+                             <div class="dropdown-content"> 
+                                 <!-- Se generan nuevas opciones con JQuery dependiendo
+                                 de las opciones disponibles en el JSon -->
+                                 <div id="opciones1">
+                                    <a href="#" onclick="clientes(this)">Clientes</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="b1">
+                        <button class="button button1" onclick="Update2(true)">General</button>
+                     </div>
+                 </div>
+                 <div class="container-p1"> 
+                     <div id="leyendas">
+                     <div id="leyenda1">   
+                         <div class="button2" data-hover="META" data-active="I'M ACTIVE">
+                              <div class="fixletter">
+                             <span id="letra1">50%</span>
+                             </div>
+                         </div>                        
+                     </div>
+                     <div id="leyenda2">                     
+                         <div class="button2" data-hover="CUMPLIMIENTO" data-active="I'M ACTIVE">
+                              <div class="fixletter">
+                             <span id="letra2">30%</span>
+                             </div>
+                         </div> 
+                     </div>
+                     </div>  
+                     <div id="scatter1"></div>                                        
+                 </div>  
+                 <div class="container-radios">
+                     <ul>
+                         <li>
+                             <input type="radio" id="v-option" onclick="ocup()" name="selector">
+                             <label for="v-option">Ocup</label>
+                             <div class="check"></div>
+                         </li> 
+                         <li>
+                             <input type="radio" id="b-option" onclick="aht()" name="selector">
+                             <label for="b-option">AHT</label>    
+                             <div class="check"><div class="inside"></div></div>
+                         </li> 
+                         <li>
+                             <input type="radio" id="n-option" onclick="con()" name="selector">
+                             <label for="n-option">Con</label>   
+                             <div class="check"><div class="inside"></div></div>
+                         </li>
+                         <li>
+                             <input type="radio" id="m-option" onclick="aus()" name="selector">
+                             <label for="m-option">Aus</label>   
+                             <div class="check"><div class="inside"></div></div>
+                         </li>
+                     </ul>
+                 </div>
+             </div>
+             <div id="c2" class="container-small">
+                 <div class="container-p2">
+					 <div id="pie1"></div>	
+					 <div id="pie2"></div>	
+					 <div id="pie3"></div>
+					 <div id="pie4"></div>
+                 </div>
+             </div>
+             <div id="c3" class="container-small">
+                 <div class="submenu">
+                     <div class="drop">
+                         <div class="dropdown">
+                             <button class="dropbtn">Campaña &#9660;</button>
+                             <div class="dropdown-content"> 
+                                 <div id="opciones2">
+                                    <a href="#" onclick="campanas(this)">Campañas</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="b1">
+                        <button class="button button1">General</button>
+                     </div>
+                 </div>
+                 <div class="container-p1"> 
+                     <div id="lineas1"></div>
+                 </div>  
+                 <div class="container-radios2">
+                     <ul>
+                         <li>
+                             <input type="radio" id="f-option" onclick="ocup2()" name="selector2">
+                             <label for="f-option">Ocup</label>
+                             <div class="check"></div>
+                         </li> 
+                         <li>
+                             <input type="radio" id="s-option" onclick="aht2()" name="selector2">
+                             <label for="s-option">AHT</label>    
+                             <div class="check"><div class="inside"></div></div>
+                         </li> 
+                         <li>
+                             <input type="radio" id="t-option" onclick="con2()" name="selector2">
+                             <label for="t-option">Con</label>   
+                             <div class="check"><div class="inside"></div></div>
+                         </li>
+                         <li>
+                             <input type="radio" id="l-option" onclick="aus2()" name="selector2">
+                             <label for="l-option">Aus</label>   
+                             <div class="check"><div class="inside"></div></div>
+                         </li>
+                     </ul>
+                 </div>
+             </div>
+             <div id="c4" class="container-small">
+                 <div class="submenu">
+                     <div class="drop">                         
+                         <div class="dropdown">
+                             <button class="dropbtn">Colaborador &#9660;</button>
+                             <div class="dropdown-content">
+                                 <div id="opciones3">
+                                    <a href="#a" onclick="colaboradores(this)">Colaboradores</a>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="dropdown">
+                             <button class="dropbtn">Fecha &#9660;</button>
+                             <div class="dropdown-content">
+                                 <div id="opciones4">
+                                    <a href="#a" onclick="fecha(this)">Fecha</a>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="b1">
+                        <button class="button button1">General</button>
+                     </div>
+                 </div>
+                 <div class="container-p1"> 
+                     <div id="barras1"></div>	
+                 </div>
+             </div> 
+         </div>
+         <script type="text/javascript" src="js/graficas1.js"></script>
+		 <script type="text/javascript" src="js/graficas2.js"></script>
+         <script type="text/javascript" src="js/graficas3.js"></script>
+         <script type="text/javascript" src="js/graficas4.js"></script>
+         <script type="text/javascript" src="js/graficas5.js"></script>
+         <script type="text/javascript" src="js/graficas6.js"></script>
+         <script type="text/javascript" src="js/graficas7.js"></script>
+     </body>
+</html>
